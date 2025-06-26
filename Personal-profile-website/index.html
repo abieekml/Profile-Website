@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Personal Profile </title>
+    <title>Personal Profile</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <style>
         * {
@@ -130,116 +130,30 @@
             margin-right: auto;
         }
 
+        /* 3D Social Media Blocks */
         .social-container {
-            position: relative;
-        }
-
-        .social-trigger {
-            background: linear-gradient(45deg, #6c5ce7, #a29bfe);
-            color: white;
-            border: none;
-            padding: 1rem 2rem;
-            border-radius: 50px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 30px rgba(108, 92, 231, 0.3);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .social-trigger::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-            transition: left 0.5s;
-        }
-
-        .social-trigger:hover::before {
-            left: 100%;
-        }
-
-        .social-trigger:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(108, 92, 231, 0.4);
-        }
-
-        .social-links {
-            position: absolute;
-            top: -200px;
-            left: 50%;
-            transform: translateX(-50%);
             display: flex;
+            justify-content: center;
             gap: 1.5rem;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-        }
-
-        .social-links.active {
-            top: -120px;
-            opacity: 1;
-            visibility: visible;
+            flex-wrap: wrap;
+            margin-top: 2rem;
         }
 
         .social-link {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
+            width: 140px;
+            height: 70px;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
             text-decoration: none;
-            font-size: 1.5rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            border-radius: 15px;
             position: relative;
-            overflow: hidden;
-        }
-
-        .social-link::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: inherit;
-            transform: scale(0);
-            border-radius: 50%;
-            transition: transform 0.3s ease;
-            z-index: -1;
-        }
-
-        .social-link:hover::before {
-            transform: scale(1.2);
-        }
-
-        .social-link:hover {
-            transform: translateY(-5px) scale(1.1);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
-        }
-
-        .github { 
-            background: linear-gradient(45deg, #333, #555);
-        }
-        .instagram { 
-            background: linear-gradient(45deg, #e1306c, #fd1d1d, #f77737, #fcaf45);
-        }
-        .whatsapp { 
-            background: linear-gradient(45deg, #25d366, #128c7e);
-        }
-        .linkedin { 
-            background: linear-gradient(45deg, #0077b5, #00a0dc);
-        }
-
-        .social-link {
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.320, 1);
+            transform-style: preserve-3d;
+            perspective: 1000px;
+            box-shadow: 
+                0 8px 20px rgba(0, 0, 0, 0.15),
+                0 4px 8px rgba(0, 0, 0, 0.1);
             animation: bounceIn 0.5s ease-out;
             animation-fill-mode: both;
         }
@@ -248,6 +162,67 @@
         .social-link:nth-child(2) { animation-delay: 0.2s; }
         .social-link:nth-child(3) { animation-delay: 0.3s; }
         .social-link:nth-child(4) { animation-delay: 0.4s; }
+
+        .social-link:hover {
+            transform: translateY(-8px) rotateX(5deg);
+            box-shadow: 
+                0 20px 40px rgba(0, 0, 0, 0.2),
+                0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .social-link-inner {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.8rem;
+            border-radius: 15px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .social-link-inner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, transparent 50%, rgba(0,0,0,0.1) 100%);
+            border-radius: 15px;
+            z-index: 1;
+        }
+
+        .social-icon {
+            font-size: 1.8rem;
+            color: white;
+            z-index: 2;
+            position: relative;
+        }
+
+        .social-text {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: white;
+            z-index: 2;
+            position: relative;
+            letter-spacing: 0.5px;
+        }
+
+        /* Social Media Brand Colors */
+        .github .social-link-inner { 
+            background: linear-gradient(135deg, #333 0%, #555 100%);
+        }
+        .instagram .social-link-inner { 
+            background: linear-gradient(135deg, #833AB4 0%, #C13584 50%, #E1306C 75%, #FD1D1D 100%);
+        }
+        .whatsapp .social-link-inner { 
+            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+        }
+        .linkedin .social-link-inner { 
+            background: linear-gradient(135deg, #0077B5 0%, #00A0DC 100%);
+        }
 
         @keyframes bounceIn {
             0% {
@@ -267,29 +242,6 @@
             }
         }
 
-        .tooltip {
-            position: absolute;
-            bottom: -40px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: rgba(0, 0, 0, 0.8);
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            white-space: nowrap;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-            z-index: 10;
-        }
-
-        .social-link:hover .tooltip {
-            opacity: 1;
-            visibility: visible;
-            bottom: -35px;
-        }
-
         @media (max-width: 768px) {
             .container {
                 padding: 1rem;
@@ -307,12 +259,23 @@
             .profile-image {
                 width: 150px;
                 height: 150px;
-                font-size: 3rem;
             }
             
-            .social-links {
-                flex-wrap: wrap;
+            .social-container {
                 gap: 1rem;
+            }
+
+            .social-link {
+                width: 120px;
+                height: 60px;
+            }
+
+            .social-text {
+                font-size: 0.85rem;
+            }
+
+            .social-icon {
+                font-size: 1.5rem;
             }
         }
     </style>
@@ -323,7 +286,7 @@
     <div class="container">
         <div class="profile-card">
             <div class="profile-image">
-                <img src="Foto.jpg">
+                <img src="Foto.jpg" >
             </div>
             
             <h1 class="profile-name">Abi Kamal</h1>
@@ -335,28 +298,30 @@
             </p>
             
             <div class="social-container">
-                <button class="social-trigger" id="socialTrigger">
-                    <i class="fas fa-share-alt"></i> Connect With Me
-                </button>
-                
-                <div class="social-links" id="socialLinks">
-                    <a href="https://github.com/abieekml" class="social-link github" target="_blank">
-                        <i class="fab fa-github"></i>
-                        <div class="tooltip">GitHub</div>
-                    </a>
-                    <a href="https://instagram.com/abii.kamal" class="social-link instagram" target="_blank">
-                        <i class="fab fa-instagram"></i>
-                        <div class="tooltip">Instagram</div>
-                    </a>
-                    <a href="https://wa.me/6289621949745" class="social-link whatsapp" target="_blank">
-                        <i class="fab fa-whatsapp"></i>
-                        <div class="tooltip">WhatsApp</div>
-                    </a>
-                    <a href="https://www.linkedin.com/in/abi-kamal-29821731b?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" class="social-link linkedin" target="_blank">
-                        <i class="fab fa-linkedin-in"></i>
-                        <div class="tooltip">LinkedIn</div>
-                    </a>
-                </div>
+                <a href="https://github.com/abieekml" class="social-link github" target="_blank">
+                    <div class="social-link-inner">
+                        <i class="fab fa-github social-icon"></i>
+                        <span class="social-text">GitHub</span>
+                    </div>
+                </a>
+                <a href="https://instagram.com/abii.kamal" class="social-link instagram" target="_blank">
+                    <div class="social-link-inner">
+                        <i class="fab fa-instagram social-icon"></i>
+                        <span class="social-text">Instagram</span>
+                    </div>
+                </a>
+                <a href="https://wa.me/6289621949745" class="social-link whatsapp" target="_blank">
+                    <div class="social-link-inner">
+                        <i class="fab fa-whatsapp social-icon"></i>
+                        <span class="social-text">WhatsApp</span>
+                    </div>
+                </a>
+                <a href="https://www.linkedin.com/in/abi-kamal-29821731b?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" class="social-link linkedin" target="_blank">
+                    <div class="social-link-inner">
+                        <i class="fab fa-linkedin-in social-icon"></i>
+                        <span class="social-text">LinkedIn</span>
+                    </div>
+                </a>
             </div>
         </div>
     </div>
@@ -383,35 +348,6 @@
             }
         }
 
-        // Social links toggle
-        const socialTrigger = document.getElementById('socialTrigger');
-        const socialLinks = document.getElementById('socialLinks');
-        let isOpen = false;
-
-        socialTrigger.addEventListener('click', function() {
-            isOpen = !isOpen;
-            
-            if (isOpen) {
-                socialLinks.classList.add('active');
-                socialTrigger.innerHTML = '<i class="fas fa-times"></i> Close';
-                socialTrigger.style.background = 'linear-gradient(45d, #e17055, #d63031)';
-            } else {
-                socialLinks.classList.remove('active');
-                socialTrigger.innerHTML = '<i class="fas fa-share-alt"></i> Connect With Me';
-                socialTrigger.style.background = 'linear-gradient(45deg, #6c5ce7, #a29bfe)';
-            }
-        });
-
-        // Close social links when clicking outside
-        document.addEventListener('click', function(e) {
-            if (!e.target.closest('.social-container') && isOpen) {
-                socialLinks.classList.remove('active');
-                socialTrigger.innerHTML = '<i class="fas fa-share-alt"></i> Connect With Me';
-                socialTrigger.style.background = 'linear-gradient(45deg, #6c5ce7, #a29bfe)';
-                isOpen = false;
-            }
-        });
-
         // Add click effect to social links
         document.querySelectorAll('.social-link').forEach(link => {
             link.addEventListener('click', function(e) {
@@ -428,8 +364,10 @@
                 ripple.style.height = '20px';
                 ripple.style.marginLeft = '-10px';
                 ripple.style.marginTop = '-10px';
+                ripple.style.zIndex = '10';
 
-                this.appendChild(ripple);
+                const inner = this.querySelector('.social-link-inner');
+                inner.appendChild(ripple);
                 
                 setTimeout(() => {
                     ripple.remove();
