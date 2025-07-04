@@ -18,9 +18,14 @@
             min-height: 100vh;
             overflow-x: hidden;
             position: relative;
+            transition: background 0.3s, color 0.3s;
         }
 
-        /* Animated background particles */
+        body.dark-mode {
+            background: linear-gradient(135deg, #2d3436 0%, #000000 100%);
+            color: #fff;
+        }
+
         .bg-animation {
             position: fixed;
             top: 0;
@@ -51,6 +56,7 @@
             padding: 2rem;
             min-height: 100vh;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
         }
@@ -65,6 +71,11 @@
             box-shadow: 0 25px 50px rgba(0, 0, 0, 0.1);
             transition: all 0.5s ease;
             animation: slideUp 1s ease-out;
+        }
+
+        body.dark-mode .profile-card {
+            background: rgba(30, 30, 30, 0.9);
+            color: #fff;
         }
 
         @keyframes slideUp {
@@ -92,7 +103,7 @@
             animation: pulse 2s infinite;
         }
 
-        .profile-image img{
+        .profile-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
@@ -110,7 +121,6 @@
             font-weight: 700;
             color: #2d3436;
             margin-bottom: 0.5rem;
-            text-shadow: none;
         }
 
         .profile-title {
@@ -130,7 +140,11 @@
             margin-right: auto;
         }
 
-        /* 3D Social Media Blocks */
+        body.dark-mode .profile-title,
+        body.dark-mode .profile-description {
+            color: #ccc;
+        }
+
         .social-container {
             display: flex;
             justify-content: center;
@@ -198,7 +212,6 @@
             font-size: 1.8rem;
             color: white;
             z-index: 2;
-            position: relative;
         }
 
         .social-text {
@@ -206,97 +219,117 @@
             font-weight: 600;
             color: white;
             z-index: 2;
-            position: relative;
             letter-spacing: 0.5px;
         }
 
-        /* Social Media Brand Colors */
-        .github .social-link-inner { 
-            background: linear-gradient(135deg, #333 0%, #555 100%);
-        }
-        .instagram .social-link-inner { 
-            background: linear-gradient(135deg, #833AB4 0%, #C13584 50%, #E1306C 75%, #FD1D1D 100%);
-        }
-        .whatsapp .social-link-inner { 
-            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
-        }
-        .linkedin .social-link-inner { 
-            background: linear-gradient(135deg, #0077B5 0%, #00A0DC 100%);
-        }
+        .github .social-link-inner { background: linear-gradient(135deg, #333 0%, #555 100%); }
+        .instagram .social-link-inner { background: linear-gradient(135deg, #833AB4 0%, #E1306C 100%); }
+        .whatsapp .social-link-inner { background: linear-gradient(135deg, #25D366 0%, #128C7E 100%); }
+        .linkedin .social-link-inner { background: linear-gradient(135deg, #0077B5 0%, #00A0DC 100%); }
 
         @keyframes bounceIn {
-            0% {
-                opacity: 0;
-                transform: scale(0.3) translateY(50px);
-            }
-            50% {
-                opacity: 1;
-                transform: scale(1.05) translateY(-10px);
-            }
-            70% {
-                transform: scale(0.9) translateY(0px);
-            }
-            100% {
-                opacity: 1;
-                transform: scale(1) translateY(0px);
-            }
+            0% { opacity: 0; transform: scale(0.3) translateY(50px); }
+            50% { opacity: 1; transform: scale(1.05) translateY(-10px); }
+            70% { transform: scale(0.9) translateY(0px); }
+            100% { opacity: 1; transform: scale(1) translateY(0px); }
         }
 
-        @media (max-width: 768px) {
-            .container {
-                padding: 1rem;
-            }
-            
-            .profile-card {
-                padding: 2rem;
-                border-radius: 20px;
-            }
-            
-            .profile-name {
-                font-size: 2rem;
-            }
-            
-            .profile-image {
-                width: 150px;
-                height: 150px;
-            }
-            
-            .social-container {
-                gap: 1rem;
-            }
+        .dark-toggle {
+            margin-top: 2rem;
+            padding: 0.6rem 1.2rem;
+            border: none;
+            border-radius: 10px;
+            background: #2d3436;
+            color: white;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
 
-            .social-link {
-                width: 120px;
-                height: 60px;
-            }
+        .dark-toggle:hover {
+            background: #636e72;
+        }
 
-            .social-text {
-                font-size: 0.85rem;
-            }
+        body.dark-mode .dark-toggle {
+            background: white;
+            color: #2d3436;
+        }
 
-            .social-icon {
-                font-size: 1.5rem;
-            }
+        .contact-form {
+            text-align: center;
+            max-width: 600px;
+            margin: 4rem auto 2rem;
+        }
+
+        .contact-form h2 {
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            color: #2d3436;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 0.8rem;
+            margin-bottom: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            font-size: 1rem;
+            background: white;
+            color: #2d3436;
+        }
+
+        .contact-form button {
+            background: #2d3436;
+            color: white;
+            padding: 0.6rem 1.2rem;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .contact-form button:hover {
+            background: #636e72;
+        }
+
+        body.dark-mode .contact-form input,
+        body.dark-mode .contact-form textarea {
+            background: #444;
+            color: white;
+            border: 1px solid #888;
+        }
+
+        body.dark-mode .contact-form button {
+            background: white;
+            color: #2d3436;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 1.5rem 0;
+            background: rgba(255,255,255,0.1);
+            font-size: 0.9rem;
+            color: #636e72;
+        }
+
+        body.dark-mode .footer {
+            background: rgba(0,0,0,0.3);
+            color: #aaa;
         }
     </style>
 </head>
 <body>
     <div class="bg-animation" id="bgAnimation"></div>
-    
+
     <div class="container">
         <div class="profile-card">
             <div class="profile-image">
-                <img src="Foto.jpg" >
+                <img src="Foto.jpg" alt="Abi Kamal">
             </div>
-            
             <h1 class="profile-name">Abi Kamal</h1>
             <p class="profile-title">Junior Developer</p>
-            
-            <p class="profile-description">
-                Undergraduate Information System student at UIN Syarif Hidayatullah Jakarta 
-                Let's connect and build something amazing together!
-            </p>
-            
+            <p class="profile-description">Undergraduate Information System student at UIN Syarif Hidayatullah Jakarta. Let's connect and build something amazing together!</p>
             <div class="social-container">
                 <a href="https://github.com/abieekml" class="social-link github" target="_blank">
                     <div class="social-link-inner">
@@ -316,26 +349,38 @@
                         <span class="social-text">WhatsApp</span>
                     </div>
                 </a>
-                <a href="https://www.linkedin.com/in/abi-kamal-29821731b?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" class="social-link linkedin" target="_blank">
+                <a href="https://www.linkedin.com/in/abi-kamal-29821731b" class="social-link linkedin" target="_blank">
                     <div class="social-link-inner">
                         <i class="fab fa-linkedin-in social-icon"></i>
                         <span class="social-text">LinkedIn</span>
                     </div>
                 </a>
             </div>
+            <button id="darkToggle" class="dark-toggle">🌙 Dark Mode</button>
+        </div>
+
+        <div class="contact-form">
+            <h2>Contact Me</h2>
+            <form action="mailto:abii.kamal14@gmail.com" method="POST" enctype="text/plain">
+                <input type="text" name="name" placeholder="Your Name" required>
+                <input type="email" name="email" placeholder="Your Email" required>
+                <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+                <button type="submit">Send Message</button>
+            </form>
         </div>
     </div>
 
+    <footer class="footer">
+        <p>&copy; 2025 Abi Kamal. All rights reserved.</p>
+    </footer>
+
     <script>
-        // Background animation
         function createParticles() {
             const bgAnimation = document.getElementById('bgAnimation');
             const particleCount = 15;
-
             for (let i = 0; i < particleCount; i++) {
                 const particle = document.createElement('div');
                 particle.className = 'particle';
-                
                 const size = Math.random() * 4 + 2;
                 particle.style.width = size + 'px';
                 particle.style.height = size + 'px';
@@ -343,15 +388,12 @@
                 particle.style.top = Math.random() * 100 + '%';
                 particle.style.animationDelay = Math.random() * 8 + 's';
                 particle.style.animationDuration = (Math.random() * 4 + 6) + 's';
-
                 bgAnimation.appendChild(particle);
             }
         }
 
-        // Add click effect to social links
         document.querySelectorAll('.social-link').forEach(link => {
-            link.addEventListener('click', function(e) {
-                // Create ripple effect
+            link.addEventListener('click', function () {
                 const ripple = document.createElement('div');
                 ripple.style.position = 'absolute';
                 ripple.style.borderRadius = '50%';
@@ -365,37 +407,22 @@
                 ripple.style.marginLeft = '-10px';
                 ripple.style.marginTop = '-10px';
                 ripple.style.zIndex = '10';
-
                 const inner = this.querySelector('.social-link-inner');
                 inner.appendChild(ripple);
-                
-                setTimeout(() => {
-                    ripple.remove();
-                }, 600);
+                setTimeout(() => ripple.remove(), 600);
             });
         });
 
-        // Add ripple animation
         const style = document.createElement('style');
-        style.textContent = `
-            @keyframes ripple {
-                to {
-                    transform: scale(4);
-                    opacity: 0;
-                }
-            }
-        `;
+        style.textContent = `@keyframes ripple { to { transform: scale(4); opacity: 0; } }`;
         document.head.appendChild(style);
 
-        // Initialize particles
         createParticles();
 
-        // Add typing effect to description
         const description = document.querySelector('.profile-description');
         const text = description.textContent;
         description.textContent = '';
         let i = 0;
-
         function typeWriter() {
             if (i < text.length) {
                 description.textContent += text.charAt(i);
@@ -403,10 +430,12 @@
                 setTimeout(typeWriter, 30);
             }
         }
-
-        // Start typing effect after page load
         window.addEventListener('load', () => {
             setTimeout(typeWriter, 1000);
+        });
+
+        document.getElementById('darkToggle').addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
         });
     </script>
 </body>
